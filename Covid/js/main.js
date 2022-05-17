@@ -2,11 +2,11 @@ import Mascara from "./modules/masks.js";
 import { consultarCep, covidBrasilApi } from "./modules/api.js";
 
 const button = document.querySelector("#button");
-const cpfInput = document.querySelector("#input-cpf");
+const cepInput = document.querySelector("#input-cep");
 
 button.addEventListener("click", (e) => {
   e.preventDefault();
-  Promise.all([consultarCep(cpfInput.value)]).then((dataCep) => {
+  Promise.all([consultarCep(cepInput.value)]).then((dataCep) => {
     dataCep = Object.values(dataCep[0]);
     let uf = dataCep[5];
     if (uf != undefined) {
@@ -19,7 +19,7 @@ button.addEventListener("click", (e) => {
   });
 });
 
-cpfInput.addEventListener("input", (e) => {
+cepInput.addEventListener("input", (e) => {
   e.target.value = Mascara.cep(e.target.value);
 });
 
